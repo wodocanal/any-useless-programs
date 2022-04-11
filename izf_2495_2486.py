@@ -1,4 +1,6 @@
-'''def f(x):
+
+'''
+  def f(x):
     N = x
     S = 1 
     while N > 0 :
@@ -28,6 +30,7 @@ for i in range(1000):
         
         print(i, a)
 '''
+
 
 
 def f(n):
