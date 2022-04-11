@@ -1,20 +1,5 @@
-
+#f function 2495
 '''
-  def f(x):
-    N = x
-    S = 1 
-    while N > 0 :
-        S = S * (N % 10)
-        N //= 10
-    return S
-
-for i in range(1000, 10000):
-    a = f(i)
-    if a == 9:
-        print(i)
-
-
-
 def f(n):
     if n == 0:
         return 0
@@ -24,6 +9,8 @@ def f(n):
     fff = f(n//5)
     if n > 0 and n % 5 != 0:
         return fff
+
+
 for i in range(1000):
     a = f(i)
     if a == 3:
@@ -32,36 +19,8 @@ for i in range(1000):
 '''
 
 
-
-def f(n):
-    if n == 0:
-        return 0
-    if n > 0 and n % 7 == 1:
-        ff = 1 + f((n-1)/7)
-        return ff
-    if n > 0 and n % 7 != 1:
-        fff = f(n//7)
-        return fff
-    
-for i in range(1000):
-    a = f(i)
-    if a == 3:
-        print(i, a)
-
-
-
-
-def f(n):
-    if n == 0:
-        return 11
-    if n>0 and n%7 < f(int(n /7)):
-        return f(int(n /7))
-    if n>0 and n%7 >= f(int(n/7)):
-        return n % 7
-    else:
-        return False
-
-
+#can_win function with Two ctones heaps
+'''
 cache = {}
 
 
@@ -124,20 +83,8 @@ for i in range(1, 44):
         print()
 '''
 
-
-def f(n):
-    if n == 0:
-        return 0
-    if n%7== 1 and n>0:
-        return 1 + f((n-1)/7)
-    if n%7 != 1 and n>0:
-        return f(n//7)
-for i in range(1000):
-    c = f(i)
-    if c == 3:
-        print(i, c)
+#can_win function with one ctones heap
 '''
-'''   
 def can_win(x):
     if x>= 56:
         return [False, []]
@@ -154,4 +101,5 @@ def can_win(x):
 
 for i in range(1, 56):
     print(i, can_win(i))
-    print()'''
+    print()
+'''
