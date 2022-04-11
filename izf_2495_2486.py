@@ -3,24 +3,25 @@
 def f(n):
     if n == 0:
         return 0
-    ff = 1 + f(n/5)
-    if n > 0 and n % 5 == 0:
+
+    if n > 0 and n % 9 == 0:
+        ff = 1+f(n / 9)
         return ff
-    fff = f(n//5)
-    if n > 0 and n % 5 != 0:
+
+    if n > 0 and n % 9 != 0:
+        fff = f(n // 9)
         return fff
 
-
-for i in range(1000):
+for i in range(2000):
     a = f(i)
     if a == 3:
+        print(a, i)
         
-        print(i, a)
-'''
+  '''  
 
 
 #can_win function with Two ctones heaps
-'''
+
 cache = {}
 
 
@@ -28,20 +29,13 @@ def can_win(a, b, depth):
     if (a, b) in cache.keys():
         return cache[(a, b)]
 
-    if a + b >= 30:
+    if a + b >= 38:
         cache[(a, b)] = [False, [], 0, 0]
         return cache[(a, b)]
 
     wins = []
 
-    a3b = can_win(a + 3, b, depth + 1)
-    if a3b[0] == False:
-        wins.append([True, [f'(+3,) = ({a + 3}, {b})'] + a3b[1], a3b[2] + 1, a3b[3] + 1])
-
-    ab3 = can_win(a, b + 3, depth + 1)
-    if ab3[0] == False:
-        wins.append([True, [f'(,+3) = ({a}, {b + 3})'] + ab3[1], ab3[2] + 1, ab3[3] + 1])
-
+   
     a2b = can_win(a + 2, b, depth + 1)
     if a2b[0] == False:
         wins.append([True, [f'(+2,) = ({a + 2}, {b})'] + a2b[1], a2b[2] + 1, a2b[3] + 1])
@@ -66,40 +60,37 @@ def can_win(a, b, depth):
         cache[(a, b)] = wins[minlen_i]
         return cache[(a, b)]
 
-    cache[(a, b)] = [False, [f'и даже если (+3,) = ({a + 3},{b}), то будет ответ ', a3b[1],
-                             f'и даже если (,+3) = ({a},{b + 3}), то будет ответ ', ab3[1],
-                             f'и даже если (+2,) = ({a + 2},{b}), то будет ответ ', a2b[1],
-                             f'и даже если (,+2) = ({a},{b + 2}), то будет ответ ', ab2[1],
-                             f'и даже если (+b,) = ({a + b},{b}), то будет ответ ', abb[1],
-                             f'и даже если (,+a) = ({a},{b + a}), то будет ответ ', aab[1]],
-                     min(a3b[2], ab3[2], a2b[2], ab2[2], aab[2], abb[2]) + 1,
-                     max(a3b[3], ab3[3], a2b[3], ab2[3], aab[3], abb[3]) + 1]
+    cache[(a, b)] = [False, [f'если (+2,) = ({a + 2},{b}), то ', a2b[1],
+                             f'если (,+2) = ({a},{b + 2}), то ', ab2[1],
+                             f'если (+b,) = ({a + b},{b}), то ', abb[1],
+                             f'если (,+a) = ({a},{b + a}), то ', aab[1]],
+                     min(a2b[2], ab2[2], aab[2], abb[2]) + 1,
+                     max(a2b[3], ab2[3], aab[3], abb[3]) + 1]
     return cache[(a, b)]
 
 
-for i in range(1, 44):
-    for j in range(1, 44):
-        print(i, j, can_win(i, j, 0))
-        print()
-'''
+for i in range(1, 31):
+    print(i, can_win(i, 7, 0))
+    print()
+
 
 #can_win function with one ctones heap
 '''
 def can_win(x):
-    if x>= 56:
+    if x>= 43:
         return [False, []]
-    plus3 = can_win(x+3)
-    if plus3[0] == False:
-        return [True, [f'+3 = {x+3}'] + plus3[1]]
+    plus4 = can_win(x+4)
+    if plus4[0] == False:
+        return [True, [f'+4 = {x+4}'] + plus4[1]]
     by3 = can_win(x*3)
     if by3[0] == False:
         return [True, [f'*3 = {x*3}'] + by3[1]]
-    by4 = can_win(x*4)
-    if by4[0] == False:
-        return [True, [f'*4 = {x*4}'] + by4[1]]
-    return [False, [f'если +3 = {x+3}, то ', plus3[1], f'если *3 = {x*3}, то ', by3[1], f'если *4 = {x*4}, то ', by4[1]]]
+    by2 = can_win(x*2)
+    if by2[0] == False:
+        return [True, [f'*2 = {x*2}'] + by2[1]]
+    return [False, [f'если +4 = {x+4}, то ', plus4[1], f'если *3 = {x*3}, то ', by3[1], f'если *2 = {x*2}, то ', by2[1]]]
 
-for i in range(1, 56):
+for i in range(1, 43):
     print(i, can_win(i))
     print()
 '''
